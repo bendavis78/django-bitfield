@@ -182,6 +182,12 @@ class BitField(BigIntegerField):
             value._keys = self.flags
         return value
 
+    def get_default(self):
+        if isinstance(self.default, BitHandler):
+            return self.default
+        return super(BitField, self).get_default()
+
+
 
 class CompositeBitFieldWrapper(object):
     def __init__(self, fields):
